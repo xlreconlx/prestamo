@@ -1,0 +1,17 @@
+<div class="modal-dialog">
+  <div class="loginmodal-container z-depth-4 center-align">
+    <h1>Ingresa con tu Usuario</h1><br>
+    <form class="form-signin" (submit)="loginWithEmail($event, email.value, password.value)">
+     <div class="input-field col s6">
+        <input #email type="email" id="email" class="form-control"  required>
+        <label for="email">Correo Electronico</label>
+     </div>
+       <div class="input-field col s6">
+           <input #password type="password" id="password" class="form-control" required>
+           <label for="password">Contraseña</label>
+        </div>
+         <a *ngIf="error" class="collection-item">{{error}}</a>
+      <button class="btn light-blue waves-effect waves-light btn-submit" type="submit">Ingresar</button>
+    </form>
+  </div>
+</div>
