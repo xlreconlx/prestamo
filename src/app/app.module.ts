@@ -8,9 +8,11 @@ import {RouterModule, Routes} from "@angular/router";
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {AF} from "./providers/af";
+import {CLIENTE} from "./providers/cliente-dao";
 
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { ClientePageComponent } from './cliente-page/cliente-page.component';
 
 const routes: Routes = [
  {
@@ -18,13 +20,15 @@ const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
-  { path: 'login', component: LoginPageComponent}
+  { path: 'login', component: LoginPageComponent},
+  { path: 'cliente', component: ClientePageComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    ClientePageComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ const routes: Routes = [
     AngularFireAuthModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AF],
+  providers: [AF,CLIENTE],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
