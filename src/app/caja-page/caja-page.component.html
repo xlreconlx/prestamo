@@ -1,0 +1,68 @@
+ <div class="container">
+ <h3>Listado de Dineros Registrados</h3>
+ <button (click)="showModal('modal2')" class="btn light-blue waves-effect waves-light right btn-crear">Registrar Dienero</button>
+ <table class="bordered">
+        <thead>
+          <tr>
+              <th>Valor</th>
+              <th class="hide-on-small-only">Fecha Registro</th>
+              <th>Empleado</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of lstCaja | async">
+          <tr>
+            <td>{{item.valor}} </td>
+            <td class="hide-on-small-only">{{item.fechaRegistro | date:"MM/dd/yy hh:mm a" }}</td>
+            <td>{{item.idempleado}}</td>
+            <td><i class="material-icons center-align admin-btn" (click)="eliminarCaja(item.$key)">delete</i></td>
+          </tr>
+        </tbody>
+</table>
+
+<!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+     <h4>Registrar Ingreso dinero</h4>
+       <div class="row">
+       <form class="col s12" #heroForm="ngForm">
+       <div class="row">
+        <div class="input-field col s6">
+          <input id="nombre" type="text"  [(ngModel)]="cliente.nombre" name="nombre"
+          required minlength="4" maxlength="50"  #name="ngModel" class="validate">
+          <label for="nombre" data-error="Campo requerido,debe tener minimo 4 Caracteres">Nombres</label>
+         </div>
+        <div class="input-field col s6">
+          <input id="apellidos" type="text" class="validate" [(ngModel)]="cliente.apellidos" name="apellidos" #apellidos="ngModel" required>
+          <label for="apellidos">Apelllidos</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="telefono" type="text" class="validate" [(ngModel)]="cliente.telefono" name="telefono">
+          <label for="telefono">Número de Telefono</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="direccion" type="text" class="validate" [(ngModel)]="cliente.direccion" name="direccion" #direccion="ngModel" required>
+          <label for="direccion">Dirección</label>
+        </div>
+         <div class="input-field col s6">
+          <input id="numeroDocumento" type="text" class="validate" [(ngModel)]="cliente.numeroDocumento" name="numeroDocumento" #numeroDocumento="ngModel" required>
+          <label for="numeroDocumento">Número de documento</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="ocupacion" type="text" class="validate" [(ngModel)]="cliente.ocupacion" name="ocupacion" #ocupacion="ngModel" required>
+          <label for="ocupacion">Ocupación</label>
+        </div>
+         <div class="input-field col s6">
+          <input id="codigo" type="text" class="validate" [(ngModel)]="cliente.codigo" name="codigo" #codigo="ngModel" required>
+          <label for="codigo">Codigo</label>
+        </div>
+      </div>
+    </form>
+       </div>
+    <div class="modal-footer">
+      <a onclick="$('#modal1').modal().modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+      <button [disabled]="!heroForm.form.valid" class="btn light-blue waves-effect waves-light" (click)="crearCliente('modal1')">Guardar</button>
+    </div>
+  </div>
+
+
+</div>

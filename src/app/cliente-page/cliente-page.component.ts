@@ -17,6 +17,7 @@ public lstClientes: FirebaseListObservable<any>;
 
   constructor(public clientes: CLIENTE, private router: Router) { 
    this.lstClientes = this.clientes.lstClientes;
+
   }
 
   ngOnInit() {
