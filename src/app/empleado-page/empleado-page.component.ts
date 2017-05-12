@@ -26,7 +26,7 @@ export class EmpleadoPageComponent implements OnInit {
   		this.route.params.subscribe(params => {
           this.uid = params['id']; 
         });
-          this.afEmpleado.uid = this.uid;
+          this.afEmpleado.listaEmpleados(this.uid);
   }
 
   ngOnInit() {

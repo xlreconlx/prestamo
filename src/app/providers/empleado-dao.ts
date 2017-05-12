@@ -6,11 +6,13 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 @Injectable()
 export class EMPLEADO {
   public lstEmpleado: FirebaseListObservable<any>;
-  public uid:string;
 
   constructor(public af: AngularFireDatabase) {
-  	 this.lstEmpleado = this.af.list('empleados/'+this.uid);
   }
+
+listaEmpleados(uid){
+	this.lstEmpleado = this.af.list('empleados/'+uid);
+}
 
 crearEmpleado(empleado){
 	return this.lstEmpleado.push(empleado);
