@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule  } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import {RouterModule, Routes} from "@angular/router";
@@ -15,6 +15,8 @@ import {CLIENTE} from "./providers/cliente-dao";
 import {GASTOS} from "./providers/gastos-dao";
 import {PRESTAMOS} from "./providers/prestamos-dao";
 import {RUTA} from "./providers/ruta-dao";
+import {EMPRESA} from "./providers/empresa-dao";
+import {EMPLEADO} from "./providers/empleado-dao";
 
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -25,6 +27,9 @@ import { AbonosPageComponent } from './abonos-page/abonos-page.component';
 import { PrestamosPageComponent } from './prestamos-page/prestamos-page.component';
 import { RutaPageComponent } from './ruta-page/ruta-page.component';
 import { GastosPageComponent } from './gastos-page/gastos-page.component';
+import { EmpleadoPageComponent } from './empleado-page/empleado-page.component';
+import { EmpresaPageComponent } from './empresa-page/empresa-page.component';
+
 
 const routes: Routes = [
  {
@@ -39,7 +44,9 @@ const routes: Routes = [
   { path: 'caja', component: CajaPageComponent},
   { path: 'prestamos', component: PrestamosPageComponent},
   { path: 'gastos', component: GastosPageComponent},
-  { path: 'ruta', component: RutaPageComponent}
+  { path: 'ruta', component: RutaPageComponent},
+  { path: 'empresa', component: EmpresaPageComponent},
+  { path: 'empleados/:id', component: EmpleadoPageComponent},
 
 ];
 
@@ -53,18 +60,21 @@ const routes: Routes = [
     AbonosPageComponent,
     PrestamosPageComponent,
     RutaPageComponent,
-    GastosPageComponent
+    GastosPageComponent,
+    EmpleadoPageComponent,
+    EmpresaPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    JsonpModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AF,CLIENTE, CAJA, ABONOS,CIUDAD, GASTOS, PRESTAMOS, RUTA],
+  providers: [AF,CLIENTE, CAJA, ABONOS,CIUDAD, GASTOS, PRESTAMOS, RUTA,EMPRESA,EMPLEADO],
 
   bootstrap: [AppComponent]
 })

@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   loginWithEmail(event, email, password){
     event.preventDefault();
     this.afService.loginWithEmail(email, password).then(() => {
-      this.router.navigate(['cliente']);
+      this.router.navigate(['empresa']);
     })
       .catch((error: any) => {
         if (error) {

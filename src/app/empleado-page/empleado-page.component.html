@@ -1,0 +1,66 @@
+<div class="container">
+ <h3>Listado de Empleados</h3>
+ <button (click)="showModal('modal1')" class="btn light-blue waves-effect waves-light right btn-crear">Crear Empleado</button>
+ <table class="bordered">
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Cedula</th>
+              <th class="hide-on-small-only">Fecha Registro</th>
+              <th>Telefono</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of lstEmpleado | async">
+          <tr>
+            <td>{{item.nombre}} {{item.apellidos}}</td>
+            <td>{{item.numeroDocumento}}</td>
+            <td class="hide-on-small-only">{{item.fechaRegistro | date:"MM/dd/yy hh:mm a" }}</td>
+            <td>{{item.telefono}}</td>
+          </tr>
+        </tbody>
+</table>
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+     <h4>Registrar Empresa</h4>
+       <div class="row">
+       <form class="col s12" #heroForm="ngForm">
+       <div class="row">
+        <div class="input-field col s6">
+          <input id="nombre" type="text"  [(ngModel)]="empleado.nombre" name="nombre"
+          required minlength="4" maxlength="50"  #name="ngModel" class="validate">
+          <label for="nombre" data-error="Campo requerido,debe tener minimo 4 Caracteres">Nombres</label>
+         </div>
+          <div class="input-field col s6">
+          <input id="apellidos" type="text" class="validate" [(ngModel)]="empleado.apellidos" name="apellidos" #apellidos="ngModel" required>
+          <label for="apellidos">Apellidos</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="nit" type="text" class="validate" [(ngModel)]="empleado.numeroDocumento" name="numeroDocumento" #numeroDocumento="ngModel" required>
+          <label for="nit">Numero Documento</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="telefono" type="text" class="validate" [(ngModel)]="empleado.telefono" name="telefono">
+          <label for="telefono">Número de Telefono</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="direccion" type="text" class="validate" [(ngModel)]="empleado.direccion" name="direccion" #direccion="ngModel" required>
+          <label for="direccion">Dirección</label>
+        </div>
+           <div class="input-field col s6">
+          <input id="correo" type="email" class="validate" [(ngModel)]="empleado.correo" name="correo" #correo="ngModel" required>
+          <label for="correo">Correo Electronico</label>
+        </div>
+         <div class="input-field col s6">
+          <input id="contra" type="password" class="validate" [(ngModel)]="empleado.password" name="password" #password="ngModel" required>
+          <label for="contra">Contraseña</label>
+        </div>
+      </div>
+    </form>
+       </div>
+    <div class="modal-footer">
+      <a onclick="$('#modal1').modal().modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+      <button [disabled]="!heroForm.form.valid" class="btn light-blue waves-effect waves-light" (click)="creaContrasenaEmpleado('modal1')">Guardar</button>
+    </div>
+  </div>
+</div>

@@ -4,10 +4,11 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
        <ul class="right hide-on-med-and-down">
 
-          <li><a>Clientes</a> </li>
+          <li><a [routerLink]="['/cliente']">Clientes</a> </li>
           <li><a>Caja</a> </li>
           <li><a>Gastos</a> </li>
-          <li><a>Empleados</a></li>
+          <li><a [routerLink]="['/empresa']">Empresas</a></li>
+          <li><a>Prestamos</a></li>
           <li><a>{{email}}</a></li>
           <li><a (click)="logout()">Salir</a></li>
         </ul>

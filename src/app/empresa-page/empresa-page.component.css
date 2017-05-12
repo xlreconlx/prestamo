@@ -1,0 +1,14 @@
+.btn-crear{
+	margin-top: 10px;
+}
+
+.error-valida{
+	position: relative;
+	margin-top: -10px;
+	font-size: .5em;
+	color: red;
+}
+
+.admin-btn{
+	cursor: pointer;
+}

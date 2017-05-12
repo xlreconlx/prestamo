@@ -1,0 +1,65 @@
+<div class="container">
+<h3>Listado de Empresas Registradas</h3>
+<button (click)="showModal('modal1')" class="btn light-blue waves-effect waves-light right btn-crear">Crear Empresa</button>
+  <table class="bordered">
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Nit</th>
+              <th class="hide-on-small-only">Fecha Registro</th>
+              <th>Fecha Vencimiento</th>
+              <th>Usuarios</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of lstEmpresas | async">
+          <tr>
+            <td>{{item.nombre}}</td>
+            <td>{{item.nit}}</td>
+            <td class="hide-on-small-only">{{item.registro | date:"MM/dd/yy hh:mm a" }}</td>
+            <td>{{item.fechaVence | date:"MM/dd/yy hh:mm a" }}</td>
+            <td><i class="material-icons center-align admin-btn" (click)="adminEmpresa(item.$key)">settings</i></td>
+          </tr>
+        </tbody>
+</table>
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+     <h4>Registrar Empresa</h4>
+       <div class="row">
+       <form class="col s12" #heroForm="ngForm">
+       <div class="row">
+        <div class="input-field col s6">
+          <input id="nombre" type="text"  [(ngModel)]="empresa.nombre" name="nombre"
+          required minlength="4" maxlength="50"  #name="ngModel" class="validate">
+          <label for="nombre" data-error="Campo requerido,debe tener minimo 4 Caracteres">Nombre Empresa</label>
+         </div>
+        <div class="input-field col s6">
+          <input id="nit" type="text" class="validate" [(ngModel)]="empresa.nit" name="nit" #nit="ngModel" required>
+          <label for="nit">Nit</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="telefono" type="text" class="validate" [(ngModel)]="empresa.telefono" name="telefono">
+          <label for="telefono">Número de Telefono</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="direccion" type="text" class="validate" [(ngModel)]="empresa.direccion" name="direccion" #direccion="ngModel" required>
+          <label for="direccion">Dirección</label>
+        </div>
+          <div class="col s12">
+          Fecha Vencimiento
+          <div class="input-field inline">
+             <input type="date" id="fecha" class="datepicker" [(ngModel)]="empresa.fechaVence" name="fechaVence"#fechaVence="ngModel" required>
+           </div>
+        </div>
+      </div>
+    </form>
+       </div>
+    <div class="modal-footer">
+      <a onclick="$('#modal1').modal().modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+      <button [disabled]="!heroForm.form.valid" class="btn light-blue waves-effect waves-light" (click)="addEmpresa('modal1')">Guardar</button>
+    </div>
+  </div>
+
+</div>
+
+
