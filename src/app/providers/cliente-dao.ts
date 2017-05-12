@@ -8,8 +8,11 @@ export class CLIENTE {
   public lstClientes: FirebaseListObservable<any>;
 
   constructor(public af: AngularFireDatabase) {
-  	 this.lstClientes = this.af.list('clientes');
   }
+
+listaClientes(uidEmpresa){
+ this.lstClientes = this.af.list('clientes/'+uidEmpresa);
+}
 
 crearCliente(cliente){
 	return this.lstClientes.push(cliente);

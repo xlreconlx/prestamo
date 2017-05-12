@@ -13,6 +13,7 @@ declare var Materialize:any;
 export class EmpresaPageComponent implements OnInit {
   public empresa: Empresa = new Empresa();
   public lstEmpresas: FirebaseListObservable<any>;
+  public idEmpresaSelect:string;
 
   constructor(private router: Router
   	,public afEmpresa: EMPRESA) {
@@ -25,8 +26,8 @@ export class EmpresaPageComponent implements OnInit {
   ngOnInit() {
   }
 
- adminEmpresa(uid: string){
-  this.router.navigate(['empleados/'+uid]);
+ adminEmpresa(ruta:string,uid: string){
+  this.router.navigate([ruta+'/'+uid]);
 }
 
 addEmpresa(modal){

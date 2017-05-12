@@ -38,7 +38,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'login', component: LoginPageComponent},
-  { path: 'cliente', component: ClientePageComponent},
+  { path: 'cliente/:id', component: ClientePageComponent},
   { path: 'ciudad', component: CiudadPageComponent},
   { path: 'abonos', component: AbonosPageComponent},
   { path: 'caja', component: CajaPageComponent},

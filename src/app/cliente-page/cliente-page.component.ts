@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CLIENTE} from "./../providers/cliente-dao";
-import {Router} from "@angular/router";
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location }               from '@angular/common';
 import {Cliente} from "./../clases/cliente";
 import {FirebaseListObservable} from 'angularfire2/database';
 declare var $:any;
@@ -14,13 +15,18 @@ declare var Materialize:any;
 export class ClientePageComponent implements OnInit {
 public cliente:Cliente = new Cliente();
 public lstClientes: FirebaseListObservable<any>;
+public uid:string;
 
-  constructor(public clientes: CLIENTE, private router: Router) { 
-   this.lstClientes = this.clientes.lstClientes;
-
+  constructor(public clientes: CLIENTE, private router: Router,private route: ActivatedRoute,
+    private location: Location) { 
+      this.route.params.subscribe(params => {
+          this.uid = params['id']; 
+        });
+      this.clientes.listaClientes(this.uid);
   }
 
   ngOnInit() {
+      this.lstClientes = this.clientes.lstClientes;
   }
 
 crearCliente(modal){

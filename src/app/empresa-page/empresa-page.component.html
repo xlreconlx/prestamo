@@ -17,10 +17,21 @@
             <td>{{item.nit}}</td>
             <td class="hide-on-small-only">{{item.registro | date:"MM/dd/yy hh:mm a" }}</td>
             <td>{{item.fechaVence | date:"MM/dd/yy hh:mm a" }}</td>
-            <td><i class="material-icons center-align admin-btn" (click)="adminEmpresa(item.$key)">settings</i></td>
+            <td><i title="Creación de empleados" class="material-icons center-align admin-btn" (click)="adminEmpresa('empleados',item.$key)">account_box</i>
+            <i title="Creación de clientes" class="material-icons center-align admin-btn" (click)="adminEmpresa('cliente',item.$key)">account_circle</i>
+            </td>
           </tr>
         </tbody>
 </table>
+
+<div class="input-field col s2" style="margin-top: 50px;">
+{{idEmpresaSelect}} aqui mostramos el id de la empresa seleccionada
+    <select [(ngModel)]="idEmpresaSelect" class="browser-default">
+        <option disabled selected [value]="" [selected]="'' == idEmpresaSelect" disabled selected>Escoja una Empresa</option>
+        <option *ngFor="let item of lstEmpresas | async" [value]="item.$key" [selected]="item.$key == idEmpresaSelect">{{item.nombre}}</option>
+     </select>
+  </div>
+
 <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
