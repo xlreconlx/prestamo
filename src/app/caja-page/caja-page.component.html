@@ -27,40 +27,22 @@
        <form class="col s12" #heroForm="ngForm">
        <div class="row">
         <div class="input-field col s6">
-          <input id="nombre" type="text"  [(ngModel)]="cliente.nombre" name="nombre"
+          <input id="valor" type="text"  [(ngModel)]="caja.valor" name="valor"
           required minlength="4" maxlength="50"  #name="ngModel" class="validate">
-          <label for="nombre" data-error="Campo requerido,debe tener minimo 4 Caracteres">Nombres</label>
+          <label for="valor" data-error="Campo requerido,debe tener minimo 4 Caracteres">Valor</label>
          </div>
+
         <div class="input-field col s6">
-          <input id="apellidos" type="text" class="validate" [(ngModel)]="cliente.apellidos" name="apellidos" #apellidos="ngModel" required>
-          <label for="apellidos">Apelllidos</label>
+          <input id="empleado" type="text" class="validate" [(ngModel)]="caja.idEmpleado" name="empleado" #empleado="ngModel" required>
+          <label for="empleado">Empleado</label>
         </div>
-        <div class="input-field col s6">
-          <input id="telefono" type="text" class="validate" [(ngModel)]="cliente.telefono" name="telefono">
-          <label for="telefono">Número de Telefono</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="direccion" type="text" class="validate" [(ngModel)]="cliente.direccion" name="direccion" #direccion="ngModel" required>
-          <label for="direccion">Dirección</label>
-        </div>
-         <div class="input-field col s6">
-          <input id="numeroDocumento" type="text" class="validate" [(ngModel)]="cliente.numeroDocumento" name="numeroDocumento" #numeroDocumento="ngModel" required>
-          <label for="numeroDocumento">Número de documento</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="ocupacion" type="text" class="validate" [(ngModel)]="cliente.ocupacion" name="ocupacion" #ocupacion="ngModel" required>
-          <label for="ocupacion">Ocupación</label>
-        </div>
-         <div class="input-field col s6">
-          <input id="codigo" type="text" class="validate" [(ngModel)]="cliente.codigo" name="codigo" #codigo="ngModel" required>
-          <label for="codigo">Codigo</label>
-        </div>
+     
       </div>
     </form>
        </div>
     <div class="modal-footer">
       <a onclick="$('#modal1').modal().modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-      <button [disabled]="!heroForm.form.valid" class="btn light-blue waves-effect waves-light" (click)="crearCliente('modal1')">Guardar</button>
+      <button [disabled]="!heroForm.form.valid" class="btn light-blue waves-effect waves-light" (click)="crearCaja('modal1')">Guardar</button>
     </div>
   </div>
 
