@@ -9,8 +9,12 @@ export class CAJA {
   public lstCaja: FirebaseListObservable<any>;
 
   constructor(public af: AngularFireDatabase) {
-  	 this.lstCaja = this.af.list('cajaa');
+
   }
+
+  listaCaja(uid){
+	this.lstCaja = this.af.list('cajas/'+uid);
+}
 
 crearCaja(caja){
 	return this.lstCaja.push(caja);

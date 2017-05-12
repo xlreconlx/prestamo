@@ -1,7 +1,7 @@
-export class Abonos{
+export class Abono{
 public uid:string;
-public idPrestamos: string;
-public idEmpleado: string;
+public uidPrestamos: string;
+public uidEmpleado: string;
 public valorAbono: number;
 public saldoTotal: number;
 public Cuota: number;

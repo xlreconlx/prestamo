@@ -8,19 +8,23 @@ export class PRESTAMOS {
   public lstPrestamos: FirebaseListObservable<any>;
 
   constructor(public af: AngularFireDatabase) {
-  	 this.lstPrestamos = this.af.list('prestamo');
   }
 
-crearPrestamos(prestamos){
-	return this.lstPrestamos.push(prestamos);
+  listaPrestamos(uid){
+	this.lstPrestamos = this.af.list('prestamos/'+uid + uid);
+}
+
+
+crearPrestamos(prestamo){
+	return this.lstPrestamos.push(prestamo);
 }
 
 eliminarPrestamos(uid:string){
 	return this.lstPrestamos.remove('/'+uid);
 }
 
-actualizarPrestamos(prestamos){
-	return this.lstPrestamos.update('/'+prestamos.uid,prestamos);
+actualizarPrestamos(prestamo){
+	return this.lstPrestamos.update('/'+prestamo.uid,prestamo);
 }
 
 }

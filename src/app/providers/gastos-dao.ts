@@ -8,19 +8,23 @@ export class GASTOS {
   public lstGastos: FirebaseListObservable<any>;
 
   constructor(public af: AngularFireDatabase) {
-  	 this.lstGastos = this.af.list('gasto');
+ 
   }
 
-crearGastos(gastos){
-	return this.lstGastos.push(gastos);
+  listaGastos(uid){
+	this.lstGastos = this.af.list('gastos/'+uid);
+}
+
+crearGastos(gasto){
+	return this.lstGastos.push(gasto);
 }
 
 eliminarGastos(uid:string){
 	return this.lstGastos.remove('/'+uid);
 }
 
-actualizarGastos(gastos){
-	return this.lstGastos.update('/'+gastos.uid,gastos);
+actualizarGastos(gasto){
+	return this.lstGastos.update('/'+gasto.uid,gasto);
 }
 
 }

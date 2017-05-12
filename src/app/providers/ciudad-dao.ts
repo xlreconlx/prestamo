@@ -8,7 +8,7 @@ export class CIUDAD {
   public lstCiudad: FirebaseListObservable<any>;
 
   constructor(public af: AngularFireDatabase) {
-  	 this.lstCiudad = this.af.list('ciudads');
+  	 this.lstCiudad = this.af.list('ciudades');
   }
 
 crearCliente(ciudad){

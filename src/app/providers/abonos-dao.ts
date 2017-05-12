@@ -8,19 +8,19 @@ export class ABONOS {
   public lstAbonos: FirebaseListObservable<any>;
 
   constructor(public af: AngularFireDatabase) {
-  	 this.lstAbonos = this.af.list('abono');
+  	 this.lstAbonos = this.af.list('abonos');
   }
 
-crearAbonos(abonos){
-	return this.lstAbonos.push(abonos);
+crearAbonos(abono){
+	return this.lstAbonos.push(abono);
 }
 
 eliminarAbonos(uid:string){
 	return this.lstAbonos.remove('/'+uid);
 }
 
-actualizarAbonos(abonos){
-	return this.lstAbonos.update('/'+abonos.uid,abonos);
+actualizarAbonos(abono){
+	return this.lstAbonos.update('/'+abono.uid,abono);
 }
 
 }
