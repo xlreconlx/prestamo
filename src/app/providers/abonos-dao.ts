@@ -8,8 +8,12 @@ export class ABONOS {
   public lstAbonos: FirebaseListObservable<any>;
 
   constructor(public af: AngularFireDatabase) {
-  	 this.lstAbonos = this.af.list('abonos');
+  
   }
+
+     listaGastos(uidPrestamo,uidEmpleado){
+	 this.lstAbonos = this.af.list('abonos/'+uidPrestamo + uidEmpleado);
+	}
 
 crearAbonos(abono){
 	return this.lstAbonos.push(abono);

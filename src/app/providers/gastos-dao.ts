@@ -11,8 +11,8 @@ export class GASTOS {
  
   }
 
-  listaGastos(uid){
-	this.lstGastos = this.af.list('gastos/'+uid);
+  listaGastos(uidEmpleado){
+	this.lstGastos = this.af.list('gastos/'+uidEmpleado);
 }
 
 crearGastos(gasto){

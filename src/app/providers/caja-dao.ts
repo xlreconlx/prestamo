@@ -12,8 +12,8 @@ export class CAJA {
 
   }
 
-  listaCaja(uid){
-	this.lstCaja = this.af.list('cajas/'+uid);
+  listaCaja(uidEmpleado){
+	this.lstCaja = this.af.list('cajas/'+uidEmpleado);
 }
 
 crearCaja(caja){

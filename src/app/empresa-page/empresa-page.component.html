@@ -17,7 +17,9 @@
             <td>{{item.nit}}</td>
             <td class="hide-on-small-only">{{item.registro | date:"MM/dd/yy hh:mm a" }}</td>
             <td>{{item.fechaVence | date:"MM/dd/yy hh:mm a" }}</td>
-            <td><i title="Creación de empleados" class="material-icons center-align admin-btn" (click)="adminEmpresa('empleados',item.$key)">account_box</i>
+            <td>
+            <i title="Creación de empleados" class="material-icons center-align admin-btn" (click)="adminEmpresa('empleados',item.$key)">account_box</i>
+
             <i title="Creación de clientes" class="material-icons center-align admin-btn" (click)="adminEmpresa('cliente',item.$key)">account_circle</i>
             </td>
           </tr>
