@@ -1,3 +1,98 @@
-<p>
-  prestamos-page works!
-</p>
+ <div class="container">
+ <h3>Listado de Clientes Registrados</h3>
+ <button (click)="showModal('modal1')" class="btn light-blue waves-effect waves-light right btn-crear">Crear Prestamo</button>
+ <table class="bordered">
+        <thead>
+          <tr>
+              <th>Cliente</th>
+              <th>Dirección</th>
+              <th>Valor Prestamo</th>
+              <th>N Cuotas</th>
+              <th>Valor Cuota</th>
+              <th>Saldo Final</th>
+              <th class="hide-on-small-only">Fecha Registro</th>
+              <th class="hide-on-small-only">Fecha Plazo</th>
+              <th>Tipo Prestamo</th>
+              <th>Cuota</th>
+              <th>Estado</th>
+              <th>Ruta</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of lstPrestamos | async">
+          <tr>
+            <td>{{item.nombre}} {{item.apellidos}}</td>
+            <td>{{item.direccion}}</td>
+            <td>{{item.precioTotal}}</td>
+            <td>{{item.totalCuotas}}</td>
+            <td>{{item.valorCuotas}}</td>
+             <td>{{item.saldoFinal}}</td>
+            <td class="hide-on-small-only">{{item.fechaRegistro | date:"MM/dd/yy hh:mm a" }}</td>
+            <td class="hide-on-small-only">{{item.fechaPlazo | date:"MM/dd/yy hh:mm a" }}</td>
+            <td>{{item.idTipoPrestamo}}</td>
+            <td>{{item.cuota}}</td>
+            <td>{{item.estado}}</td>
+            <td>{{item.ruta}}</td>
+            <td><i class="material-icons center-align admin-btn" (click)="eliminarCliente(item.$key)">delete</i></td>
+          </tr>
+        </tbody>
+</table>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+     <h4>Registrar Cliente</h4>
+       <div class="row">
+       <form class="col s12" #heroForm="ngForm">
+       <div class="row">
+       <div class="input-field col s6">
+       	{{idClienteSelect}} aqui mostramos el id de la Cliente seleccionada
+    <select [(ngModel)]="idClienteSelect" class="browser-default">
+        <option disabled selected [value]="" [selected]="'' == idClienteSelect" disabled selected>Escoja una Cliente</option>
+        <option *ngFor="let item of lstCliente | async" [value]="item.$key" [selected]="item.$key == idClienteSelect">{{item.nombre}}{{item.apellidos}}</option>
+     </select>
+       </div>
+         <div class="input-field col s6">
+       	{{idEmpleadoSelect}} aqui mostramos el id de la Empleado seleccionada
+    <select [(ngModel)]="idEmpleadoSelect" class="browser-default">
+        <option disabled selected [value]="" [selected]="'' == idEmpleadoSelect" disabled selected>Escoja una Empleado</option>
+        <option *ngFor="let item of lstEmpleado | async" [value]="item.$key" [selected]="item.$key == idEmpleadoSelect">{{item.nombre}}{{item.apellidos}}</option>
+     </select>
+       </div>
+            <div class="input-field col s6">
+       	{{idTipoPrestamoSelect}} aqui mostramos el id de la Tipo prestamo seleccionado
+    <select [(ngModel)]="idTipoPrestamoSelect" class="browser-default">
+        <option disabled selected [value]="" [selected]="'' == idTipoPrestamoSelect" disabled selected>Escoja una Tipo de Prestamo</option>
+        <option *ngFor="let item of lstPrestamos | async" [value]="item.$key" [selected]="item.$key == idTipoPrestamoSelect">{{item.idTipoPrestamoSelect}}</option>
+     </select>
+       </div>
+                <div class="input-field col s6">
+       	{{idRutaSelect}} aqui mostramos el id de la Ruta seleccionada
+    <select [(ngModel)]="idRutaSelect" class="browser-default">
+        <option disabled selected [value]="" [selected]="'' == idRutaSelect" disabled selected>Escoja una Tipo de Ruta</option>
+        <option *ngFor="let item of lstRuta | async" [value]="item.$key" [selected]="item.$key == idRutaSelect">{{item.idRutaSelect}}</option>
+     </select>
+       </div>
+        <div class="input-field col s6">
+          <input id="valor" type="text" class="validate" [(ngModel)]="prestamo.valor" name="Valor" #valor="ngModel" required>
+          <label for="valor">Valor Cuota</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="numeroCuotas" type="text" class="validate" [(ngModel)]="prestamo.numeroCuotas" name="numeroCuotas">
+          <label for="numeroCuotas">Número de Cuota</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="valorCuotas" type="text" class="validate" [(ngModel)]="prestamo.valorCuotas" name="valorCuotas" #valorCuotas="ngModel" required>
+          <label for="valorCuotas">valor Cuotas</label>
+        </div>
+    
+      </div>
+    </form>
+       </div>
+    <div class="modal-footer">
+      <a onclick="$('#modal1').modal().modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+      <button [disabled]="!heroForm.form.valid" class="btn light-blue waves-effect waves-light" (click)="crearCliente('modal1')">Guardar</button>
+    </div>
+  </div>
+
+
+</div>

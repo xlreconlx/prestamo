@@ -16,13 +16,16 @@ declare var Materialize:any;
 export class EmpleadoPageComponent implements OnInit {
  public uid:string;
  public empleado: Empleado = new Empleado();
+   public idEmpleadoSelect:string;
  /** info es una variable para crear nuestro empleado con usuario y contraseña */
  private info = {email:'',password:''};
  public  lstEmpleado: FirebaseListObservable<any>;
  private urlEmpleado = 'https://warsoft-code.herokuapp.com/createUser';  // URL to web API
 
-  constructor(private http: Http,private route: ActivatedRoute,
-    private location: Location,public afEmpleado: EMPLEADO) { 
+  constructor(private http: Http,
+    private route: ActivatedRoute,
+    private location: Location,
+    public afEmpleado: EMPLEADO) { 
   		this.route.params.subscribe(params => {
           this.uid = params['id']; 
         });

@@ -10,8 +10,8 @@ export class PRESTAMOS {
   constructor(public af: AngularFireDatabase) {
   }
 
-  listaPrestamos(uidCliente,uidEmpleado){
-	this.lstPrestamos = this.af.list('prestamos/'+uidCliente + uidEmpleado);
+  listaPrestamos(uidCliente,uidEmpleado,uidTipoPrestamo,uidRuta){
+	this.lstPrestamos = this.af.list('prestamos/'+uidCliente + uidEmpleado + uidRuta);
 }
 
 

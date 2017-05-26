@@ -1,3 +1,75 @@
-<p>
-  gastos-page works!
-</p>
+ <div class="container">
+ <h3>Listado de Gastos Registrados</h3>
+ <button (click)="showModal('modal1')" class="btn light-blue waves-effect waves-light right btn-crear">Crear Gasto</button>
+ <table class="bordered">
+        <thead>
+          <tr>
+              <th>Empleado</th>
+              <th>Importe</th>
+              <th>Nombre</th>
+              <th>Proveedor</th>
+              <th>valor</th>
+              <th class="hide-on-small-only">Fecha Registro</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of lstGastos | async">
+          <tr>
+            <td>{{item.empleado.nombre}} {{item.empleado.apellidos}}</td>
+            <td>{{item.importe}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.proveedor}}</td>
+            <td>{{item.valor}}</td>
+            <td class="hide-on-small-only">{{item.fechaRegistro | date:"MM/dd/yy hh:mm a" }}</td>
+     
+            <td><i class="material-icons center-align admin-btn" (click)="eliminarGastos(item.$key)">delete</i></td>
+          </tr>
+        </tbody>
+</table>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+     <h4>Registrar Gasto</h4>
+       <div class="row">
+       <form class="col s12" #heroForm="ngForm">
+       <div class="row">
+      <div class="input-field col s6">
+       	{{idEmpleadoSelect}} aqui mostramos el id de la Empleado seleccionada
+    <select [(ngModel)]="idEmpleadoSelect" class="browser-default">
+        <option disabled selected [value]="" [selected]="'' == idEmpleadoSelect" disabled selected>Escoja una Empleado</option>
+        <option *ngFor="let item of lstEmpleado | async" [value]="item.$key" [selected]="item.$key == idEmpleadoSelect">{{item.nombre}}</option>
+     </select>
+       </div>
+        <div class="input-field col s6">
+          <input id="importe" type="text"  [(ngModel)]="gasto.importe" name="importe"
+          required minlength="4" maxlength="50"  #importe="ngModel" class="validate">
+          <label for="importe" data-error="Campo requerido,debe tener minimo 4 Caracteres">Importe</label>
+         </div>
+        <div class="input-field col s6">
+          <input id="proveedor" type="text" class="validate" [(ngModel)]="gasto.proveedor" name="apellidos" #proveedor="ngModel" required>
+          <label for="proveedor">proveedor</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="nombre" type="text" class="validate" [(ngModel)]="gasto.nombre" name="nombre">
+          <label for="nombre">nombre</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="valor" type="text" class="validate" [(ngModel)]="gasto.valor" name="valor" #valor="ngModel" required>
+          <label for="valor">valor</label>
+        </div>
+         <div class="input-field col s6">
+          <input id="fecha" type="text" class="validate" [(ngModel)]="gasto.fecha" name="fecha" #fecha="ngModel" required>
+          <label for="fecha">fecha registro</label>
+        </div>
+
+      </div>
+    </form>
+       </div>
+    <div class="modal-footer">
+      <a onclick="$('#modal1').modal().modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+      <button [disabled]="!heroForm.form.valid" class="btn light-blue waves-effect waves-light" (click)="crearGasto('modal1')">Guardar</button>
+    </div>
+  </div>
+
+
+</div>
